@@ -7,7 +7,8 @@ from glob import glob
 from htmlgnerator import Generator
 from pyh import *
 #profile table 错位可能是有空白的td，删除后重新运行
-
+#TODO: 对所有的页面，防止td内部标签打断。
+#TODO: 论文排版
 files=glob(u'teacher_pages/*-output.html')
 print u"清理旧的output文件...."
 for _file in files:
@@ -28,7 +29,7 @@ for _file in files:
     filename=os.path.basename(_file).split(".")[0]
     #print tables[0].get_text(":",strip=True).split(':')
     if u"序号" in tables[0].get_text("#",strip=True).split('#'):
-        print os.path.basename(_file)+u"为旧版文件\t删除"
+        print os.path.basename(_file)+u"为旧版文件\t\t删除"
         f.close()
         os.remove(_file)
     elif u"近期部分科研成果"  in tables[1].get_text("#",strip=True).split('#'):
