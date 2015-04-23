@@ -9,7 +9,7 @@ class Generator(object):
 	def __init__(self):
 		pass
 
-	def makeTableWithSub(self,title,subtitles,infobuf=None):
+	def makeTableWithSub(self,title,subtitles,infobuf):
 		"""
 		生成带有副表头的表
 		params:
@@ -31,10 +31,10 @@ class Generator(object):
 
 
 		# 开始创建内容
-		for i in range(0,10):
-			r=tr(cl="cv_content")#新建一行
-			for j in range(0,len(subtitles)):#创建列，并逐个插入行中
-				r<<td(i*"$",cl="cv_content")
+		for info in infobuf:
+			r=tr(cl="cv_content")
+			for i in info:
+				r<<td(i,cl="cv_content")
 
 			self.table<<r#把该行插入表格
 
@@ -63,7 +63,7 @@ class Generator(object):
 		"""
 		生成带有表头的表
 		params:
-			infobuf:表格内容（元组）
+			infobuf:表格内容
 		"""
 		self.table=table(cl="cv_profiletable")#总表
 		#3列td：图片占位，需要填写的信息，信息内容

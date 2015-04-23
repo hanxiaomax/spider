@@ -67,10 +67,6 @@ for _file in files:
 
         tables=articlebody.find_all("table")
 
-        # subtitles_1=[u"项目名称",u"项目类别",u"项目时间",u"工作类别","项目金额"]
-        # subtitles_2=["专利号","专利名称","专利类型"]
-        has_sub=[u"科研项目",u"专利"]
-
 
         for i in range(0,len(tables)):
             #fb.write(unicode(tables[i].prettify()).encode("utf-8"))
@@ -90,26 +86,42 @@ for _file in files:
                 #生成重新排版的 profile table
                 page<<g.makeprofile(_list)
 
-
+            #处理其他表格（每个人可能不一样
             else:
-                #处理其他表格（每个人可能不一样
                 table=tables[i]
-                trs=table.find_all('tr')
+                trs=table.find_all('tr')#获取表中全部列，其中trs[0]为标题,trs[1]需要判断是内容还是副标题
 
-                title=trs[0].get_text("\n",strip=True)
+                title=trs[0].get_text("\n",strip=True)#获取表头
 
+                if title == u"科研项目":#有副标题处理副标题
+                    _trinfo=[]#存放一个表格中各列的数据
+                    for i in range(2,len(trs)):
+                        _tdinfo=[]#存放一行中各列的数据
+                        tds=trs[i].find_all("td")
+                        for td in tds:#进入到td层，否则会产生过多的碎片
+                            info=td.get_text("#",strip=True).split('#')#以td层为单位分割成list
+                            info="".join(info)#把list连接为字符串，这个字符串就是一个td中的纯文本内容
+                            _tdinfo.append(info)#字符串加入列表
+                        _trinfo.append(_tdinfo)
+                    page<<g.makeTableWithSub(title,subtitles1,_trinfo)
 
-
-                if title in has_sub:#有副标题处理副标题
-                    tds=trs[1].find_all('td')
-
-                    page<<g.makeTableWithSub(title,subtitles1)
+                elif title == u"专利":
+                    _trinfo=[]
+                    for i in range(2,len(trs)):
+                        _tdinfo=[]
+                        tds=trs[i].find_all("td")
+                        for td in tds:
+                            info=td.get_text("#",strip=True).split('#')
+                            info="".join(info)
+                            _tdinfo.append(info)
+                        _trinfo.append(_tdinfo)
+                    page<<g.makeTableWithSub(title,subtitles2,_trinfo)
 
                 else:
-                    _list=[]
+                    _trinfo=[]
                     for i in range(1,len(trs)):
-                        _list.append(trs[i].get_text(strip=True))
-                    page<<g.makeTable(title,_list)
+                        _trinfo.append(trs[i].get_text(strip=True))
+                    page<<g.makeTable(title,_trinfo)
 
 
         page.printOut(u'teacher_pages/'+filename+'-output.html')

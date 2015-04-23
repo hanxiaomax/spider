@@ -5,28 +5,36 @@
     font-weight: bold;
     width: 1000px;
     text-align: left;
+    font-size: 18px;
 }
 .cv_subheader{
     background:#6495ed;
     font-weight: bold;
     text-align: center;
+    font-size: 16px;
 }
 .cv_tablestyle{
     background:#EFEFEF;
     page-break-before:always;
     width: 1000px;
+    word-break:break-all;
 
 }
 .cv_content{
     line-height: 28px;
     text-align: left;
+    font-size: 14px;
+
 }
 
 .cv_profile{
     text-align: left;
+    font-size: 16px;
 }
 .cv_profiletable{
     background:#ffffff;
     page-break-before:always;
     width: 1000px;
+
+
 }
