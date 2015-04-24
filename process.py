@@ -4,11 +4,12 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 import os
 from glob import glob
-from htmlgnerator import Generator
+from htmlgenerator import Generator
 from pyh import *
 #profile table 错位可能是有空白的td，删除后重新运行
 #TODO: 对所有的页面，防止td内部标签打断。
 #TODO: 论文排版
+#FIXME:对于没有按规则排版页面，重新生成的页面也是乱的
 files=glob(u'teacher_pages/*-output.html')
 print u"清理旧的output文件...."
 for _file in files:
@@ -34,12 +35,12 @@ for _file in files:
         os.remove(_file)
     elif u"近期部分科研成果"  in tables[1].get_text("#",strip=True).split('#'):
 
-        print filename+u"为旧版文件 删除"
+        print os.path.basename(_file)+u"为旧版文件\t\t删除"
         f.close()
         os.remove(_file)
     elif u"个人简介"  in tables[1].get_text("#",strip=True).split('#'):
 
-        print filename+u"为旧版文件 删除"
+        print os.path.basename(_file)+u"为旧版文件\t\t删除"
         f.close()
         os.remove(_file)
 
@@ -126,6 +127,6 @@ for _file in files:
 
 
         page.printOut(u'teacher_pages/'+filename+'-output.html')
-        print u"成功"
+        print u"\t成功"
 
 
