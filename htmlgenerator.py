@@ -67,7 +67,7 @@ class Generator(object):
 		"""
 		self.table=table(cl="cv_profiletable")#总表
 		#3列td：图片占位，需要填写的信息，信息内容
-		imagecol=td("",id="image",width="25%")
+		imagecol=td("",id="image",cl="cv_image",rowspan="4")
 		infocol=td(id="info",width="25%",colspan="4")
 		detailcol=td("",id="detail",width="50%")
 		for i in infobuf:
