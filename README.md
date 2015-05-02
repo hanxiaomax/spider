@@ -7,15 +7,11 @@
 
 #TODO:
 
-- [ ] 改进`style.css`，实现良好的重新排版效果
-- [ ] 分解部分代码为函数
-- [ ] Be more pythonic
-- [ ] 是否能剔除影响排版的空格
-- [ ] a task list item
-- [ ] list syntax required
-- [ ] normal **formatting**, @mentions, #1234 refs
-- [ ] incomplete
-- [x] completed
+- [ ] 改进`style.css`，实现良好的重新排版效果  
+- [ ] 分解部分代码为函数  
+- [ ] Be more pythonic  
+- [ ] 是否能剔除影响排版的空格  
+
   
 #Trouble Shooting
 
