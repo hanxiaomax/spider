@@ -11,7 +11,11 @@
 - [ ] 分解部分代码为函数
 - [ ] Be more pythonic
 - [ ] 是否能剔除影响排版的空格
-
+- [ ] a task list item
+- [ ] list syntax required
+- [ ] normal **formatting**, @mentions, #1234 refs
+- [ ] incomplete
+- [x] completed
   
 #Trouble Shooting
 
